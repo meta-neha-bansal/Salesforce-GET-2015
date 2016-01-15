@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>1%2C000%2C000</fullName>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <template>unfiled$public/Account_Updation_Alert</template>
+    </alerts>
+    <fieldUpdates>
+        <fullName>Rejection</fullName>
+        <field>Type</field>
+        <literalValue>Prospect</literalValue>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>initial process</fullName>
+        <field>Type</field>
+        <literalValue>Pending</literalValue>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>process1</fullName>
+        <field>Type</field>
+        <literalValue>Pending</literalValue>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>rejection Action</fullName>
+        <field>Type</field>
+        <literalValue>Prospect</literalValue>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>success</fullName>
+        <field>Type</field>
+        <literalValue>Customer</literalValue>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>success</fullName>
+        <field>Type</field>
+        <literalValue>Customer</literalValue>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <rules>
+        <fullName>Account Updation Alert</fullName>
+        <actions>
+            <name>1%2C000%2C000</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <formula>AND( NOT( ISBLANK( Owner.Email ) ),   Owner.Id  &lt;&gt;  $User.Id , AnnualRevenue  &gt; 1000000)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+</Workflow>
