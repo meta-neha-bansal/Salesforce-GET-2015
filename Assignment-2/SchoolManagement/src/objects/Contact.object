@@ -10,9 +10,9 @@
     <fields>
         <fullName>Experience__c</fullName>
         <label>Experience</label>
-        <length>32768</length>
-        <type>LongTextArea</type>
-        <visibleLines>3</visibleLines>
+        <precision>3</precision>
+        <scale>0</scale>
+        <type>Number</type>
     </fields>
     <fields>
         <fullName>Languages__c</fullName>

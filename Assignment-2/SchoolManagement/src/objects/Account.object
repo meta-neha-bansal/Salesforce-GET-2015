@@ -49,6 +49,20 @@
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>Max_PCT__c</fullName>
+        <label>Max PCT</label>
+        <precision>18</precision>
+        <scale>0</scale>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Multiple_Of_Five__c</fullName>
+        <label>Multiple Of Five</label>
+        <precision>18</precision>
+        <scale>0</scale>
+        <type>Number</type>
+    </fields>
+    <fields>
         <fullName>NumberofLocations__c</fullName>
         <label>Number of Locations</label>
         <precision>3</precision>
@@ -123,17 +137,38 @@
         <label>date</label>
         <type>Date</type>
     </fields>
-    <fields>
-        <fullName>format__c</fullName>
-        <label>format</label>
-        <length>15</length>
-        <type>Text</type>
-    </fields>
+    <validationRules>
+        <fullName>Account_Number_Validation</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND( NOT( ISBLANK(AccountNumber)),NOT(ISNUMBER(AccountNumber)) )</errorConditionFormula>
+        <errorMessage>Account number must be a number</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Billing_Postal_Code_Validation</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(
+OR(BillingCountry = &quot;USA&quot;, BillingCountry = &quot;US&quot;),
+NOT(REGEX(BillingPostalCode, &quot;\\d{5}(-\\d{4})?&quot;))
+)</errorConditionFormula>
+        <errorMessage>Billing postal code must be in format 99999 OR 99999-9999</errorMessage>
+    </validationRules>
     <validationRules>
         <fullName>CreditCardNumberValidationRule</fullName>
         <active>true</active>
         <errorConditionFormula>NOT( REGEX(  CreditCardNumber__c  , &quot;(((\\d{4}-){3}\\d{4})|\\d{16})?&quot;))</errorConditionFormula>
         <errorMessage>Credit_Card_Number should be formatted in 9999-9999-9999-9999 or 9999999999999999 number</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Max_PCT_Rule</fullName>
+        <active>true</active>
+        <errorConditionFormula>NOT(AND(  Max_PCT__c &lt;=100, Max_PCT__c  &gt;=0))</errorConditionFormula>
+        <errorMessage>MaxPCT can be between 0-100%</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Multiple_Of_Five_Rule</fullName>
+        <active>true</active>
+        <errorConditionFormula>MOD( Multiple_Of_Five__c ,5) &lt;&gt; 0</errorConditionFormula>
+        <errorMessage>Number should be a multiple of 5</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>dateValidationRule</fullName>

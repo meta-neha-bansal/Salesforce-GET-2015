@@ -13,5 +13,11 @@
         <members>Student__c</members>
         <name>CustomTab</name>
     </types>
+    <types>
+        <members>Account</members>
+        <members>Contact</members>
+        <members>Student__c</members>
+        <name>Workflow</name>
+    </types>
     <version>15.0</version>
 </Package>
