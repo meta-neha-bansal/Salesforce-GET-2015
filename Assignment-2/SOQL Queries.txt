@@ -1,0 +1,32 @@
+1.  Q. Write SOQL Select all strudent Name,Dob,Sex where LastName starts with “S”
+    Ans. SELECT Name, DOB__c , Age__c From Student__c Where LastName__c LIKE 'S%'
+   
+2.  Q.  Select All students where ClassName starts with “X”
+    Ans. SELECT Name From Student__c Where class__r.Name LIKE 'X%' 
+	
+3.  Q.  Select all Student and ClassName
+    Ans. SELECT Name , class__r.Name From Student__c  
+	
+4.  Q.  Select all Classes with students in every class as sub query.
+    Ans.  SELECT Id, Name,(SELECT Name FROM Students__r)
+          FROM Class__c
+
+5.  Q.  Select all students where class teacher name starts with “S”
+    Ans. SELECT Name  From Student__c where  class__r.ClassTeacher__r.Name LIKE 'S%'  
+
+6.  Q.  All students where DOB > Year 2000
+    Ans. SELECT Name  From Student__c where  DOB__C > 2000-12-31
+
+7.  Q.  All Leads Where ModifiedDate in current month
+    Ans.  SELECT Name  From Lead  Where  LastModifiedDate = THIS_MONTH
+
+8.  Q.  All Classes with Students as sub query where student Name Starts with “S”
+    Ans. SELECT Id, Name,(SELECT Name FROM Students__r )
+    FROM Class__c WHERE id IN (SELECT Class__c FROM Student__c WHERE Name LIKE 'S%')
+
+9.  Q.  All Teachers who have Hindi and English both subjects
+    Ans. Select firstName, LastName from Contact where Subjects__c INCLUDES ('Hindi;English')
+
+10. Q.  All students who have hindi or maths
+    Ans. Select firstName__c, LastName__c from Student__C where Class__r.ClassTeacher__r.Subjects__c INCLUDES ('Hindi','English')
+
