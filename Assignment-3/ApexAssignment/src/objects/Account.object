@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <fullName>Active__c</fullName>
+        <label>Active</label>
+        <picklist>
+            <picklistValues>
+                <fullName>No</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>ContactIDs__c</fullName>
+        <label>ContactIDs</label>
+        <length>32768</length>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>CreditCardNumber__c</fullName>
+        <label>CreditCardNumber</label>
+        <length>15</length>
+        <type>Text</type>
+    </fields>
+    <fields>
+        <fullName>CustomerPriority__c</fullName>
+        <label>Customer Priority</label>
+        <picklist>
+            <picklistValues>
+                <fullName>High</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Low</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Medium</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Match_Billing_Address__c</fullName>
+        <defaultValue>false</defaultValue>
+        <label>Match Billing Address</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Max_PCT__c</fullName>
+        <label>Max PCT</label>
+        <precision>18</precision>
+        <scale>0</scale>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Multiple_Of_Five__c</fullName>
+        <label>Multiple Of Five</label>
+        <precision>18</precision>
+        <scale>0</scale>
+        <type>Number</type>
+    </fields>
+    <fields>
+        <fullName>NumberofLocations__c</fullName>
+        <label>Number of Locations</label>
+        <precision>3</precision>
+        <scale>0</scale>
+        <type>Number</type>
+    </fields>
+    <fields>
+        <fullName>Potential_Value__c</fullName>
+        <label>Potential Value</label>
+        <summarizedField>Opportunity.ExpectedRevenue</summarizedField>
+        <summaryForeignKey>Opportunity.AccountId</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>SLAExpirationDate__c</fullName>
+        <label>SLA Expiration Date</label>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>SLASerialNumber__c</fullName>
+        <label>SLA Serial Number</label>
+        <length>10</length>
+        <type>Text</type>
+    </fields>
+    <fields>
+        <fullName>SLA__c</fullName>
+        <label>SLA</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Gold</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Silver</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Platinum</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Bronze</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>UpsellOpportunity__c</fullName>
+        <label>Upsell Opportunity</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Maybe</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>No</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>date__c</fullName>
+        <label>date</label>
+        <type>Date</type>
+    </fields>
+    <validationRules>
+        <fullName>Account_Number_Validation</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND( NOT( ISBLANK(AccountNumber)),NOT(ISNUMBER(AccountNumber)) )</errorConditionFormula>
+        <errorMessage>Account number must be a number</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Billing_Postal_Code_Validation</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(
+OR(BillingCountry = &quot;USA&quot;, BillingCountry = &quot;US&quot;),
+NOT(REGEX(BillingPostalCode, &quot;\\d{5}(-\\d{4})?&quot;))
+)</errorConditionFormula>
+        <errorMessage>Billing postal code must be in format 99999 OR 99999-9999</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>CreditCardNumberValidationRule</fullName>
+        <active>true</active>
+        <errorConditionFormula>NOT( REGEX(  CreditCardNumber__c  , &quot;(((\\d{4}-){3}\\d{4})|\\d{16})?&quot;))</errorConditionFormula>
+        <errorMessage>Credit_Card_Number should be formatted in 9999-9999-9999-9999 or 9999999999999999 number</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Max_PCT_Rule</fullName>
+        <active>false</active>
+        <errorConditionFormula>NOT(AND(  Max_PCT__c &lt;=100, Max_PCT__c  &gt;=0))</errorConditionFormula>
+        <errorMessage>MaxPCT can be between 0-100%</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Multiple_Of_Five_Rule</fullName>
+        <active>true</active>
+        <errorConditionFormula>MOD( Multiple_Of_Five__c ,5) &lt;&gt; 0</errorConditionFormula>
+        <errorMessage>Number should be a multiple of 5</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>dateValidationRule</fullName>
+        <active>true</active>
+        <errorConditionFormula>CASE(MOD(  date__c  - DATE(1900, 1, 7), 7),
+0, 0,
+6, 0,
+1) = 0</errorConditionFormula>
+        <errorMessage>date should be a weekday</errorMessage>
+    </validationRules>
+    <webLinks>
+        <fullName>Billing</fullName>
+        <availability>online</availability>
+        <displayType>link</displayType>
+        <hasMenubar>true</hasMenubar>
+        <hasScrollbars>true</hasScrollbars>
+        <hasToolbar>true</hasToolbar>
+        <height>600</height>
+        <isResizable>true</isResizable>
+        <linkType>url</linkType>
+        <masterLabel>Billing</masterLabel>
+        <openType>newWindow</openType>
+        <position>none</position>
+        <protected>false</protected>
+        <showsLocation>true</showsLocation>
+        <showsStatus>true</showsStatus>
+        <url>http://www.genwatt.com/genwatt/billing.htm?actname={!Account_Name}</url>
+    </webLinks>
+</CustomObject>
