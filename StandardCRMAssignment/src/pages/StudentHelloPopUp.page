@@ -1,0 +1,9 @@
+<apex:page >
+    <script>
+    function hello()
+    {
+        alert("Hello World");
+        
+    }    
+    </script>
+</apex:page>
