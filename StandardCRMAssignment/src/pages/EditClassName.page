@@ -1,0 +1,21 @@
+<apex:page standardController="Class__c" showHeader="false">
+    <script>
+    function editClassName()
+    {
+        sforce.connection.sessionId = "{!$Api.Session_ID}";
+        var className = Document.getElementById("className").value;
+    }
+    </script>
+    <apex:form >
+        <apex:pageBlock >
+            <apex:pageBlockSection >
+                Name <input title="Name" value="{!class__c.name}" id="className"/>
+                
+            </apex:pageBlockSection>
+            <apex:pageBlockButtons >
+                <apex:commandButton value="Edit class Name" onclick="editClassName();"/>
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+    </apex:form>
+    
+</apex:page>

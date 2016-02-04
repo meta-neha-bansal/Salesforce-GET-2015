@@ -1,0 +1,42 @@
+<!-- This to add a button on Class detail page when click on it open a pop-up window. 
+with one text box and one button when click on that button add a new student
+in this class with name as in text box-->
+
+<apex:page standardController="Class__c">
+    <script src="/soap/ajax/11.0/connection.js"></script>
+    <script src="/soap/ajax/11.0/apex.js"></script>
+    <script>
+    function createStudentOfGivenClass()
+    {
+        
+        sforce.connection.sessionId = "{!$Api.Session_ID}";
+        var studentName = document.getElementById("name").value;
+        var newStudent= new sforce.SObject("Student__C");
+        newStudent.name = studentName;
+        newStudent.LastName__C = "st lastname";
+        newStudent.class__c="{!class__C.id}";
+        result = sforce.connection.create([newStudent]);
+        if(result[0].getBoolean("success"))
+        {
+            alert('Student Created successfully');
+        }
+        else{
+            alert('Error : '+result);
+        }    
+        window.close();
+        
+    }
+    </script>
+    <apex:form >
+        <apex:pageBlock >
+            <apex:pageBlockSection >
+                Name <input title="Name" id="name" />   
+            </apex:pageBlockSection>
+            <apex:pageBlockButtons >
+                <apex:commandButton value="Create New Student" onclick="createStudentOfGivenClass() ;"/>
+            </apex:pageBlockButtons>
+            
+        </apex:pageBlock>
+    </apex:form>
+    
+</apex:page>

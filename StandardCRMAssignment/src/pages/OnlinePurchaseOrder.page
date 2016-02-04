@@ -1,0 +1,56 @@
+<apex:page controller="OnlinePurchaseOrderController">
+<apex:form >
+    <apex:pageblock title="Online Purchase Order System" >
+        <apex:pageBlockSection title="PurchaseOrderLineItem List" columns="1"  id="ProductLineItems" rendered="{!ProductLineItemsBlockPopup}">
+            <apex:outputPanel rendered="{!showProductLineItems}">
+            
+            <apex:pageblockTable value="{!PurchaseOrderLineItemList}" var="listitem"   columns="4" >
+                     <apex:column value="{!listitem.Name}"/>
+                     <apex:column headerValue="Quantity">
+                         <apex:outputField value="{!listitem.Quantity__c}">
+                         <apex:inlineEditSupport event="ondblClick" />
+                         </apex:outputField>
+                     </apex:column>
+                     <apex:column value="{!listitem.UnitPrice__c}">
+                     </apex:column>
+            </apex:pageblockTable> 
+            <apex:commandButton value="proccced To Pay" action="{!procccedToPay}"/>
+            </apex:outputPanel>    
+            
+        </apex:pageBlockSection>
+        <apex:pageBlockSection title="Product List" columns="1" rendered="{!ProductBlockPopup}">
+            <apex:pageblockTable value="{!productList}" var="a" columns="4">
+            <apex:column value="{!a.ProductCode}"/>
+            <apex:column value="{!a.UnitPrice__c}"/>
+            <apex:column value="{!a.Name}"/>
+            <apex:column > 
+                <apex:commandButton value="Add To Card" action="{!addToCard}" reRender="ProductLineItems">
+                 <apex:param name="productId" value="{!a.id}" assignTo="{!productId}"/>  
+                </apex:commandButton>
+            </apex:column>
+            <apex:column > 
+                <apex:outputLink value="/{!a.id}">Details</apex:outputLink>
+            </apex:column>
+            
+        </apex:pageblockTable>
+        </apex:pageBlockSection>
+        <apex:pageBlockSection rendered="{!payBlockPopup}" >
+            <apex:inputField value="{!orderObject.Your_Name__c}" required="true"></apex:inputField>
+            <apex:inputField value="{!orderObject.Address__c}" required="true"/>
+            <apex:inputField value="{!orderObject.Mobile_No__c}" required="true"/>
+            <apex:outputField value="{!orderObject.TotalPrice__c}"/>
+            <apex:commandButton action="{!pay}" value="Pay"/>
+        </apex:pageBlockSection>
+        
+        <apex:pageBlockSection id="deliveryStatus" rendered="{!deliveryStatusPopup}">
+            Your Product  with order id <apex:outputLink value="/{!orderObject.id}">{!orderObject.id}</apex:outputLink>
+             will be delivered by {!deliveryDate}  
+            <apex:outputField value="{!orderObject.Your_Name__c}"/>
+            <apex:outputField value="{!orderObject.Address__c}"/>
+            <apex:outputField value="{!orderObject.Mobile_No__c}"/>
+            <apex:outputField value="{!orderObject.TotalPrice__c}"/>
+        </apex:pageBlockSection>
+    </apex:pageblock>
+</apex:form>
+    
+</apex:page>
