@@ -1,0 +1,30 @@
+<apex:page controller="myClass">
+    <apex:form >
+        <apex:pageBlock >
+<apex:pageBlockTable value="{!contacts}" var="con" id="myTable">
+    
+    <apex:column >
+        <apex:facet name="header">
+            <apex:commandLink value="FirstName{!IF(sortField=='FirstName',IF(myOrder='ASC','▼','▲'),'')}" reRender="myTable">
+                <apex:param name="sortField" value="FirstName" assignTo="{!sortField}" />
+                <apex:param name="myOrder" value="{!IF(myOrder == 'DESC', 'ASC','DESC')}" assignTo="{!myOrder}" />
+                
+            </apex:commandLink>
+        </apex:facet>
+        <apex:outputField value="{!con.FirstName}" />
+    </apex:column>
+    <apex:column >
+        <apex:facet name="header">
+            <apex:commandLink value="LastName{!IF(sortField=='LastName',IF(myOrder='ASC','▼','▲'),'')}" reRender="myTable">
+                <apex:param name="sortField" value="LastName" assignTo="{!sortField}" />
+                <apex:param name="myOrder" value="{!IF(myOrder == 'DESC', 'ASC','DESC')}" assignTo="{!myOrder}" />
+               
+            </apex:commandLink>
+        </apex:facet>
+        <apex:outputField value="{!con.LastName}" />
+    </apex:column>
+</apex:pageBlockTable>
+</apex:pageBlock>
+    </apex:form>
+    
+</apex:page>
