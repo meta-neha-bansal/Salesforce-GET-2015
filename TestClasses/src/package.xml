@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <types>
+        <members>AccountUpdate</members>
+        <members>AccountUpdateTest</members>
+        <members>ClassInformation</members>
+        <members>ClassInformationTest</members>
+        <members>DaysInfo</members>
+        <members>DaysInfoTest</members>
+        <members>Stack</members>
+        <members>TestCheckMaxStudentLimitOfClass</members>
+        <members>TestClassMyCountUpdate</members>
+        <members>TestPopoulateCloseDate</members>
+        <members>TestRestrictClassOnDelete</members>
+        <members>TestRestrictHindiTeacherEntry</members>
+        <members>TestStack</members>
+        <members>TestUpdateManager</members>
+        <members>UpdateManager</members>
+        <name>ApexClass</name>
+    </types>
+    <types>
+        <members>CheckMaxStudentLimitOfClass</members>
+        <members>ClassMyCountUpdate</members>
+        <members>DeleteOpportunityLineItemOnReset</members>
+        <members>OpputunityUpdate</members>
+        <members>PopoulateCloseDate</members>
+        <members>RestrictClassOnDeleteForFemaleStudents</members>
+        <members>RestrictHindiTeacherEntry</members>
+        <name>ApexTrigger</name>
+    </types>
+    <version>15.0</version>
+</Package>
