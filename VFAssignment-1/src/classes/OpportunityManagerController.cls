@@ -1,3 +1,9 @@
+/*
+ * Name:OpportunityManagerController
+ * Since:27-1-2016
+ * Description:It is used to Select BillToContact using Custom LookUp.
+ * It Display List of Contacts related to that Manager.
+ */ 
 public with sharing class OpportunityManagerController {
 
     public Opportunity opportunity{get;set;}
