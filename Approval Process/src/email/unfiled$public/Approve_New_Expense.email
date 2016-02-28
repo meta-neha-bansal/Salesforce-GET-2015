@@ -1,0 +1,7 @@
+Hi,
+
+This is to notify you about expense approve you have made.
+your expense record has been {!Expense__c.Status__c}.
+
+
+Thanks

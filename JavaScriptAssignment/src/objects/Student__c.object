@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <fullName>Age__c</fullName>
+        <formula>ABS((TODAY()  -  DOB__c ) / 365)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Age</label>
+        <precision>18</precision>
+        <scale>0</scale>
+        <type>Number</type>
+    </fields>
+    <fields>
+        <fullName>Class__c</fullName>
+        <label>Class</label>
+        <referenceTo>Class__c</referenceTo>
+        <relationshipLabel>Students</relationshipLabel>
+        <relationshipName>Students</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <type>MasterDetail</type>
+    </fields>
+    <fields>
+        <fullName>DOB__c</fullName>
+        <label>DOB</label>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>FirstName__c</fullName>
+        <label>FirstName</label>
+        <length>15</length>
+        <type>Text</type>
+    </fields>
+    <fields>
+        <fullName>LastName__c</fullName>
+        <label>LastName</label>
+        <length>15</length>
+        <required>true</required>
+        <type>Text</type>
+    </fields>
+    <fields>
+        <fullName>Married__c</fullName>
+        <defaultValue>false</defaultValue>
+        <label>Married</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Sex__c</fullName>
+        <label>Sex</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Male</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Female</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>WifeName__c</fullName>
+        <label>WifeName</label>
+        <length>15</length>
+        <type>Text</type>
+    </fields>
+    <fields>
+        <fullName>email__c</fullName>
+        <label>email</label>
+        <type>Email</type>
+    </fields>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <webLinks>
+        <fullName>Hello</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Hello</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>alert(&quot;Hello World&quot;);</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Student_Info</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Student Info</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!requireScript(&quot;/soap/ajax/20.0/connection.js&quot;)} 
+{!requireScript(&quot;/soap/ajax/20.0/apex.js&quot;)} 
+var myWindow = window.open(&apos;&apos;, &apos;MsgWindow&apos;, &apos;width=200, height=100&apos;);
+    myWindow.document.write(&quot;&lt;table border=&apos;1&apos;&gt;&quot;+
+                            &quot;&lt;tr&gt;&lt;th&gt;name&lt;/th&gt;&quot;+
+                            &quot;&lt;th&gt;class id&lt;/th&gt;&lt;/tr&gt;&quot;+
+                            &quot;&lt;tr&gt;&lt;td&gt;{!Student__c.Id}&lt;/td&gt;&quot;+
+                            &quot;&lt;td&gt;{!Student__c.ClassId__c}&lt;/td&lt;/tr&gt;&lt;/table&gt;&quot;);</url>
+    </webLinks>
+</CustomObject>
