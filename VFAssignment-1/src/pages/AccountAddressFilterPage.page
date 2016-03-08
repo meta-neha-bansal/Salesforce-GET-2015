@@ -1,16 +1,17 @@
-<apex:page controller="AccountAddressFilterController">
+<apex:page controller="AccountAddressFilterController" showHeader="false">
     <apex:form >
+        <apex:pageMessages /> 
         <apex:pageblock id="details" >
             
-            <apex:pageBlockSection >
-                Billing City <apex:inputText value="{!getBillingCitystring}" id="BillingCity" />
-                Billing State <apex:inputText value="{!getBillingStatestring}" id="BillingState"/>
-                Billing Country <apex:inputText value="{!getBillingCountrystring}" id="BillingCountry"/>
+            <apex:pageBlockSection title = 'Search Accounts'>
+                Billing City <apex:inputText value="{!BillingCity}" id="BillingCity" />
+                Billing State <apex:inputText value="{!BillingState}" id="BillingState"/>
+                Billing Country <apex:inputText value="{!BillingCountry}" id="BillingCountry"/>
                 <apex:commandButton action="{!searchRecords}" value="Search" id="Search"/>
             </apex:pageBlockSection>
             
-            <apex:pageBlockSection id="accountsBlock" rendered="{!accountBlockPopup}">
-                <apex:pageBlockTable value="{!createAccountList}" var="records">
+            <apex:pageBlockSection id="accountsBlock" rendered="{!accountBlockPopup}" title="Accounts">
+                <apex:pageBlockTable value="{!accounts}" var="records">
                     <apex:column value="{!records.name}" headerValue="Name"/>
                     <apex:column value="{!records.BillingCity}" headerValue="Billing City"/>
                     <apex:column value="{!records.BillingState}" headerValue="Billing State"/>
@@ -18,11 +19,11 @@
                 </apex:pageBlockTable>
             </apex:pageBlockSection>
             
-            <apex:pageblockButtons rendered="{!buttonBlockPopup}">
-                <apex:commandButton value="First Page" rerender="details" action="{!setCon.first}" disabled="{!NOT(setCon.hasPrevious)}"/>
-                <apex:commandButton value="Previous" rerender="details" action="{!setCon.previous}" disabled="{!NOT(setCon.hasPrevious)}"/>
-                <apex:commandButton value="Next" rerender="details" action="{!setCon.next}" disabled="{!NOT(setCon.hasNext)}"/>
-                <apex:commandButton value="Last Page" rerender="details" action="{!setCon.last}" disabled="{!NOT(setCon.hasNext)}"/>
+            <apex:pageblockButtons rendered="{!buttonBlockPopup}" >
+                <apex:commandButton value="First Page" rerender="details" action="{!accountsetController.first}" disabled="{!NOT(accountsetController.hasPrevious)}"/>
+                <apex:commandButton value="Previous" rerender="details" action="{!accountsetController.previous}" disabled="{!NOT(accountsetController.hasPrevious)}"/>
+                <apex:commandButton value="Next" rerender="details" action="{!accountsetController.next}" disabled="{!NOT(accountsetController.hasNext)}"/>
+                <apex:commandButton value="Last Page" rerender="details" action="{!accountsetController.last}" disabled="{!NOT(accountsetController.hasNext)}"/>
             </apex:pageblockButtons>
             
         </apex:pageblock>
